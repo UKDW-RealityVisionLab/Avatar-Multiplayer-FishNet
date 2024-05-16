@@ -389,7 +389,6 @@ MonoBehaviour:
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField:
   - {fileID: 373965915013292495}
-  - {fileID: 0}
   SerializedTransformProperties:
     Position: {x: 3.35664, y: -0.00000047683716, z: 33.832367}
     Rotation: {x: -0, y: -0.9252041, z: -0, w: 0.37946987}
@@ -2802,7 +2801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Third Camera
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.x
