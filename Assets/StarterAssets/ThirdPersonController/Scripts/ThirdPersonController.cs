@@ -12,7 +12,6 @@ namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM 
-    [RequireComponent(typeof(PlayerInput))]
 #endif
     public class ThirdPersonController : NetworkBehaviour
     {
@@ -107,10 +106,10 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private GameObject FirstCamera;
 
         [SerializeField]
         private Camera playerCamera;
-        private float cameraYOffset = 0.4f;
 
         private const float _threshold = 0.01f;
 
@@ -134,27 +133,9 @@ namespace StarterAssets
             base.OnStartClient();
             if (base.IsOwner)
             {
-                if (_mainCamera == null)
-                {
-                    _mainCamera = GameObject.FindGameObjectWithTag("Third Camera");
-                }
-                _hasAnimator = TryGetComponent(out _animator);
-                _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
-                //_hasAnimator = TryGetComponent(out _animator);
-                _controller = GetComponent<CharacterController>();
-                _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM
-            _playerInput = GetComponent<PlayerInput>();
-#else
-                Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
-
-                AssignAnimationIDs();
-
-                // reset our timeouts on start
-                _jumpTimeoutDelta = JumpTimeout;
-                _fallTimeoutDelta = FallTimeout;
+                this.enabled = true;
+                FirstCamera = GameObject.FindGameObjectWithTag("Camera");
+                FirstCamera.SetActive(false);
                 if (_mainCamera == null)
                 {
                     _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -180,6 +161,7 @@ namespace StarterAssets
             else
             {
                 this.enabled = false;
+                Destroy(GetComponent<PlayerInput>());
                 CinemachineCameraTarget.SetActive(false);
             }
         }
