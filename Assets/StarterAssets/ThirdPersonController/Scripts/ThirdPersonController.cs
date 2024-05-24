@@ -133,9 +133,9 @@ namespace StarterAssets
             base.OnStartClient();
             if (base.IsOwner)
             {
-                this.enabled = true;
+                this.enabled = true; //Mengaktifkan Script ThirdPersonController
                 FirstCamera = GameObject.FindGameObjectWithTag("Camera");
-                FirstCamera.SetActive(false);
+                FirstCamera.SetActive(false); //Nonaktifkan Camera Utama
                 if (_mainCamera == null)
                 {
                     _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -160,9 +160,9 @@ namespace StarterAssets
             }
             else
             {
-                this.enabled = false;
-                Destroy(GetComponent<PlayerInput>());
-                CinemachineCameraTarget.SetActive(false);
+                this.enabled = false; //Nonaktifkan Script ThirdPersonController
+                Destroy(GetComponent<PlayerInput>()); //Menghapus Script PlayerInput
+                CinemachineCameraTarget.SetActive(false); //Nonaktifkan Camera Third Person.
             }
         }
 
@@ -171,19 +171,12 @@ namespace StarterAssets
 
         private void Update()
         {
-            //_hasAnimator = TryGetComponent(out _animator);
-
-            //JumpAndGravity();
-            //GroundedCheck();
             if (base.IsOwner)
             {
-
-                //_hasAnimator = TryGetComponent(out _animator);
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
             }
-            //Move();
         }
 
         private void LateUpdate()
