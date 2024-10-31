@@ -47,6 +47,14 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# User generated
+*.vsconfig
+*.vs
+.DS_Store
+
+# Blender files
+*.blend*
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta

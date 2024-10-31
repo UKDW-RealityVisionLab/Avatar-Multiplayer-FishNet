@@ -2,13 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using UnityEngine;
+using TMPro;
 
 public class LoginRequest : MonoBehaviour
 {
     private string loginUrl = "http://localhost:8080/auth/signin";
 
-    private string inputEmail;
-    private string inputPassword;
+    [SerializeField] private TMP_InputField emailInputField;
+    [SerializeField] private TMP_InputField passwordInputField;
 
     public void StartLogin(string email, string password)
     {
@@ -17,9 +19,9 @@ public class LoginRequest : MonoBehaviour
 
     public void OnLoginButtonClicked()
     {
-        string email = inputEmail;
-        string password = inputPassword;
-        StartLogin(email, password);
+        string email = emailInputField.text;
+        string password = passwordInputField.text;
+        StartLogin(email.Trim(), password.Trim());
     }
 
     private IEnumerator LoginCoroutine(string email, string password)
@@ -56,17 +58,5 @@ public class LoginRequest : MonoBehaviour
 
             Debug.LogError("Login Failed: " + data.message);
         }
-    }
-
-    public void ReadEmailInput(string emailString)
-    {
-        inputEmail = emailString.Trim();
-        Debug.Log("Email: " + inputEmail);
-    }
-
-    public void ReadPasswordInput(string passwordString)
-    {
-        inputPassword = passwordString.Trim();
-        Debug.Log("Password: " + inputPassword);
     }
 }
