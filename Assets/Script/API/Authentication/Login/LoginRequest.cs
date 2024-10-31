@@ -7,7 +7,7 @@ using TMPro;
 
 public class LoginRequest : MonoBehaviour
 {
-    private string loginUrl = "http://localhost:8080/auth/signin";
+    private string loginUrl = AppConfig.BASE_URL+"auth/signin";
 
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField passwordInputField;
