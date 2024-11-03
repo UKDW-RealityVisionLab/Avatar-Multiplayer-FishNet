@@ -1,4 +1,4 @@
-﻿using FishNet.Connection;
+using FishNet.Connection;
 using FishNet.Managing.Logging;
 using FishNet.Managing.Scened;
 using FishNet.Object;
@@ -71,12 +71,28 @@ namespace FishNet.Example.Scened
         {
             if (!_onTriggerEnter)
             {
-                return; 
+                return;
             }
 
-            
-            Debug.Log("Pindah Scene");
-            LoadScene(other.GetComponent<NetworkObject>());
+            CheckPermissionRequest refScript = GetComponent<CheckPermissionRequest>();
+            if (refScript != null)
+            {
+                //refScript.CheckUserAccess();
+                refScript.CheckUserAccess(hasAccess =>
+                {
+                    if (hasAccess)
+                    {
+                        Debug.Log("User has access!");
+                        LoadScene(other.GetComponent<NetworkObject>());
+                    }
+                    else
+                    {
+                        Debug.Log("User does not have access.");
+                    }
+                });
+            }
+
+            //LoadScene(other.GetComponent<NetworkObject>());
         }
 
         [Server(Logging = LoggingType.Off)]
@@ -142,11 +158,5 @@ namespace FishNet.Example.Scened
 
 
         }
-
-
     }
-
-
-
-
 }
