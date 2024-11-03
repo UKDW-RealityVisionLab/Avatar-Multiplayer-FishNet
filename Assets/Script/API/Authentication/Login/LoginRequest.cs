@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LoginRequest : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class LoginRequest : MonoBehaviour
 
     public void OnLoginButtonClicked()
     {
-        string email = emailInputField.text;
-        string password = passwordInputField.text;
+        //string email = emailInputField.text;
+        //string password = passwordInputField.text;
+        string email = "teacher007@mail.com";
+        string password = "password";
         StartLogin(email.Trim(), password.Trim());
     }
 
@@ -54,6 +57,8 @@ public class LoginRequest : MonoBehaviour
 
             Debug.Log(TokenManager.Instance.LoginToken);
             Debug.Log(TokenManager.Instance.RefreshToken);
+
+            SceneManager.LoadScene("Main", LoadSceneMode.Single);
         }
         else
         {
