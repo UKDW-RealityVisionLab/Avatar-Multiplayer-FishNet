@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
-using UnityEngine;
 using TMPro;
 
 public class LoginRequest : MonoBehaviour
@@ -50,13 +49,18 @@ public class LoginRequest : MonoBehaviour
             Debug.Log("Username: "+ data.username);
 
             // Use loginResponse data as needed, e.g., storing the access token
+            TokenManager.Instance.LoginToken = data.accessToken;
+            TokenManager.Instance.RefreshToken = data.refreshToken;
+
+            Debug.Log(TokenManager.Instance.LoginToken);
+            Debug.Log(TokenManager.Instance.RefreshToken);
         }
         else
         {
             ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(request.downloadHandler.text);
             ErrorData data = errorResponse.data;
 
-            Debug.LogError("Login Failed: " + data.message);
+            Debug.LogError("Login Failed: " + data);
         }
     }
 }
