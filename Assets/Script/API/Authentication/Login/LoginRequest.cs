@@ -19,10 +19,10 @@ public class LoginRequest : MonoBehaviour
 
     public void OnLoginButtonClicked()
     {
-        //string email = emailInputField.text;
-        //string password = passwordInputField.text;
-        string email = "prtha@student.ukdw.ac.id";
-        string password = "qwe123";
+        string email = emailInputField.text;
+        string password = passwordInputField.text;
+        //string email = "prtha@student.ukdw.ac.id";
+        //string password = "qwe123";
         StartLogin(email.Trim(), password.Trim());
     }
 
