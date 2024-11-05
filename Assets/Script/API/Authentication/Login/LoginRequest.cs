@@ -21,8 +21,8 @@ public class LoginRequest : MonoBehaviour
     {
         //string email = emailInputField.text;
         //string password = passwordInputField.text;
-        string email = "teacher007@mail.com";
-        string password = "password";
+        string email = "prtha@student.ukdw.ac.id";
+        string password = "qwe123";
         StartLogin(email.Trim(), password.Trim());
     }
 

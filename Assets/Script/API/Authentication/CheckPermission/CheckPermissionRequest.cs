@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 
     public void CheckUserAccess(System.Action<bool> callback)
     {
-        StartCoroutine(CheckPermissionCoroutine(2, callback));
+        StartCoroutine(CheckPermissionCoroutine(1, callback));
     }
 
     private IEnumerator CheckPermissionCoroutine(long permissionId, System.Action<bool> callback)
