@@ -3,14 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using static PermissionConstants;
 
-    public class CheckPermissionRequest : MonoBehaviour
+public class CheckPermissionRequest : MonoBehaviour
 {
     private string checkAccessUrl = AppConfig.BASE_URL + "/auth/apps-check-permission";
 
+    // Serialize the enum for dropdown selection in the Inspector
+    [SerializeField]
+    private PermissionList _permissionAccessOption;
+
     public void CheckUserAccess(System.Action<bool> callback)
     {
-        StartCoroutine(CheckPermissionCoroutine(1, callback));
+        int resourceId = PermissionConstants.Permissions[_permissionAccessOption];
+        StartCoroutine(CheckPermissionCoroutine(resourceId, callback));
     }
 
     private IEnumerator CheckPermissionCoroutine(long permissionId, System.Action<bool> callback)
