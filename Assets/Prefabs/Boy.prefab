@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 8856814783903888225}
   - component: {fileID: 7230193705139341817}
   - component: {fileID: 5895277336589161428}
+  - component: {fileID: 1518107825944746350}
   m_Layer: 8
   m_Name: Boy
   m_TagString: Player
@@ -156,7 +157,13 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'RightHandMiddle2'\n\tTransform
+    'LeftHandRing2'\n\tTransform 'Spine1'\n\tTransform 'RightHandPinky2'\n\tTransform
+    'Neck'\n\tTransform 'LeftHandThumb1'\n\tTransform 'RightHandThumb3'\n\tTransform
+    'RightForeArm'\n\tTransform 'LeftLeg'\n\tand more ...\n\tFrom animation clip
+    'Opening Door Inwards'\n\tFrom animation clip 'Button Pushing'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -387,6 +394,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 3610127125924231968}
   - {fileID: 7230193705139341817}
+  - {fileID: 5895277336589161428}
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField:
   - {fileID: 373965915013292495}
@@ -471,15 +479,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 8856814783903888225}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 8856814783903888225}
   IgnoredParameters: []
   _animator: {fileID: 8494537322090283253}
   _smoothFloats: 1
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 0
+--- !u!114 &1518107825944746350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244364691231632075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05c00d9efb555f46bc5fbf04fbad96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: 101
 --- !u!1 &313250782470626577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,6 +2843,10 @@ PrefabInstance:
     - target: {fileID: 4958304909581645449, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_Name
       value: ThirdCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958304909581645449, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalPosition.x

@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 120132892523556391}
   - component: {fileID: 1066769815924805518}
   - component: {fileID: 9148491645239479937}
+  - component: {fileID: -8898666572431874332}
   m_Layer: 8
   m_Name: girl
   m_TagString: Player
@@ -186,7 +187,13 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'RightHandMiddle2'\n\tTransform
+    'LeftHandRing2'\n\tTransform 'Spine1'\n\tTransform 'RightHandPinky2'\n\tTransform
+    'Neck'\n\tTransform 'LeftHandThumb1'\n\tTransform 'RightHandThumb3'\n\tTransform
+    'RightForeArm'\n\tTransform 'LeftLeg'\n\tand more ...\n\tFrom animation clip
+    'Opening Door Inwards'\n\tFrom animation clip 'Button Pushing'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -462,6 +469,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 5046778246743794963}
   - {fileID: 120132892523556391}
+  - {fileID: 9148491645239479937}
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField:
   - {fileID: 4445737932464109489}
@@ -500,15 +508,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 1066769815924805518}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1066769815924805518}
   IgnoredParameters: []
   _animator: {fileID: 3448393361900854325}
   _smoothFloats: 1
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 0
+--- !u!114 &-8898666572431874332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449861108802899413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05c00d9efb555f46bc5fbf04fbad96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: 101
 --- !u!1 &574235933694741735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,17 +3032,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThirdCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4958304909581645449, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.059999228
+      value: -0.0000007301569
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23000002
+      value: -0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.420002
+      value: -0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3029,15 +3054,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4958304909581645452, guid: 1da5341fc7aefbe4bae650dfba1867ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
