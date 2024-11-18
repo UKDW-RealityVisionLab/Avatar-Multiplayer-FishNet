@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirebaseAuth.unity
     guid: 517578eed235ded4eb251a33516a8b19
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 0609f100a9217f549b5bc74f53cdbef9
   m_configObjects: {}
