@@ -42,7 +42,7 @@ public class CharacterSelection : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnCharacterServerRpc(int spawnIndex, NetworkConnection conn)
     {
-        GameObject player = Instantiate(character[spawnIndex], SpawnPoint.instance.transform.position, quaternion.identity);
+        GameObject player = Instantiate(character[spawnIndex], SpawnPoint.instance.transform.position, Quaternion.identity);
         Spawn(player, conn);
     }
 }
