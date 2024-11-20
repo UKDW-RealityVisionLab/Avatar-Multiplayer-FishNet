@@ -28,7 +28,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        // Menampilkan menu pause
         pauseMenu.SetActive(true);
+        // Menghentikan waktu
+        Time.timeScale = 0f;
     }
 
     public void Quit()
@@ -38,7 +41,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        // Menyembunyikan menu pause
         pauseMenu.SetActive(false);
+        // Mengembalikan waktu ke normal
+        Time.timeScale = 1f;
     }
 
     // Fungsi untuk mengatur volume audio
