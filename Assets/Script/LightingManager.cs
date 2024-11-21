@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LightingManager : MonoBehaviour
 {
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightingPreset Preset;
-    [SerializeField, Range(0, 24)] private float TimeOfDay;
+    [SerializeField, Range(0, 3600)] private float TimeOfDay;
+    [SerializeField] private Material skyMaterial;
 
     private void Update()
     {
@@ -17,17 +19,25 @@ public class LightingManager : MonoBehaviour
         if(Application.isPlaying)
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24;
-            UpdateLighting(TimeOfDay / 24);
+            TimeOfDay %= 3600;
+            UpdateLighting(TimeOfDay / 3600);
+            // DateTime utcNow = DateTime.UtcNow; // Waktu UTC
+            // TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+            // DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, timeZone);
+            // float timeOfDay = (float)localTime.TimeOfDay.TotalSeconds;
+            // UpdateLighting(timeOfDay / 86400f);
         }
         else
         {
-            UpdateLighting(TimeOfDay/24);
+            UpdateLighting(TimeOfDay/3600);
         }
     }
 
     private void UpdateLighting(float timePercent)
     {
+        if (skyMaterial != null)
+            skyMaterial.SetColor("_Tint", Preset.SkyboxColor.Evaluate(timePercent));
+
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
 
