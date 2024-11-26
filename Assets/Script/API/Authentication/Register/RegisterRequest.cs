@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 public class RegisterRequest : MonoBehaviour
 {
     private string registerUrl = AppConfig.BASE_URL + "/auth/signup";
-    private UserService userService = new UserService();
 
     // common form
     [SerializeField] private TMP_Dropdown registrationTypeDropdown;
@@ -18,11 +17,9 @@ public class RegisterRequest : MonoBehaviour
 
     // for student registration form
     [SerializeField] private TMP_InputField studentIDInputField;
-    [SerializeField] private TMP_InputField registerYearInputField;
 
     // for teacher registration form
     [SerializeField] private TMP_InputField teacherIDInputField;
-    [SerializeField] private TMP_InputField employmentNumberInputField;
 
     void Start()
     {
@@ -35,9 +32,8 @@ public class RegisterRequest : MonoBehaviour
         string username = usernameInputField.text.Trim();
         string password = passwordInputField.text.Trim();
         string name = nameInputField.text.Trim();
-        string studentID = studentIDInputField.text.Trim();
-        string teacherID = teacherIDInputField.text.Trim();
-        string registerYear = registerYearInputField.text.Trim();
+        string nim = studentIDInputField.text.Trim();
+        string nid = teacherIDInputField.text.Trim();
         string gender = genderDropdown.options[genderDropdown.value].text;
         string registrationType = registrationTypeDropdown.options[registrationTypeDropdown.value].text;
 
@@ -48,19 +44,22 @@ public class RegisterRequest : MonoBehaviour
             username = username,
             password = password,
             name = name,
-            studentId = studentID,
-            teacherId = teacherID,
-            registerYear = registerYear,
-            gender = gender
+            gender = gender,
+            firstName = name
+
         };
 
         switch (registrationType)
         {
             case "Student":
                 registerPayload.scope = "student";
+
+                registerPayload.nim = nim;
                 break;
             case "Teacher":
                 registerPayload.scope = "teacher";
+
+                registerPayload.nid = nid;
                 break;
             default:
                 break;
@@ -119,16 +118,13 @@ public class RegisterRequest : MonoBehaviour
     private void setStudentFormVisibility(bool visibility)
     {
         studentIDInputField.gameObject.SetActive(visibility);
-        registerYearInputField .gameObject.SetActive(visibility);
         resetAllFields();
     }
 
     private void setTeacherFormVisibility(bool visibility)
     {
         teacherIDInputField.gameObject.SetActive(visibility);
-        employmentNumberInputField.gameObject.SetActive(visibility);
         teacherIDInputField.GetComponent<TMP_InputField>().text = string.Empty;
-        employmentNumberInputField.GetComponent<TMP_InputField>().text = string.Empty;
         resetAllFields(); 
     }
 
@@ -140,10 +136,10 @@ public class RegisterRequest : MonoBehaviour
         nameInputField.GetComponent<TMP_InputField>().text = string.Empty;
         genderDropdown.value = 0;
 
-        studentIDInputField.GetComponent<TMP_InputField>().text = string.Empty;
-        registerYearInputField.GetComponent<TMP_InputField>().text = string.Empty;
+        //studentIDInputField.GetComponent<TMP_InputField>().text = string.Empty;
+        //registerYearInputField.GetComponent<TMP_InputField>().text = string.Empty;
 
-        teacherIDInputField.GetComponent<TMP_InputField>().text = string.Empty;
-        employmentNumberInputField.GetComponent<TMP_InputField>().text = string.Empty;
+        //teacherIDInputField.GetComponent<TMP_InputField>().text = string.Empty;
+        //employmentNumberInputField.GetComponent<TMP_InputField>().text = string.Empty;
     }
 }

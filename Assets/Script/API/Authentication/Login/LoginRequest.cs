@@ -65,7 +65,7 @@ public class LoginRequest : MonoBehaviour
             ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(request.downloadHandler.text);
             ErrorData data = errorResponse.data;
 
-            Debug.LogError("Login Failed: " + data);
+            Debug.LogError("Login Failed: " + data.message);
         }
     }
 }
