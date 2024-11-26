@@ -54,26 +54,23 @@ public class RegisterRequest : MonoBehaviour
             gender = gender
         };
 
-        string jsonPayload = JsonUtility.ToJson(registerPayload);
-
-        Debug.Log($"JSON Payload: \n {jsonPayload}");
-        string newEndpoint = "";
-
         switch (registrationType)
         {
             case "Student":
-                newEndpoint = registerUrl + "/student";
+                registerPayload.scope = "student";
                 break;
             case "Teacher":
-                newEndpoint = registerUrl + "/teacher"; 
+                registerPayload.scope = "teacher";
                 break;
             default:
                 break;
         }
 
-        Debug.Log($"Register URL: {newEndpoint}");
-        StartCoroutine(SendRegisterRequest(newEndpoint, jsonPayload));
-        //userService.RegisterUser(jsonPayload);
+        Debug.Log($"Register URL: {registerUrl}");
+
+        string jsonPayload = JsonUtility.ToJson(registerPayload);
+        Debug.Log($"JSON Payload: \n {jsonPayload}");
+        StartCoroutine(SendRegisterRequest(registerUrl, jsonPayload));
     }
 
     public void OnRegistrationTypeValueChanged()

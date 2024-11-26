@@ -9,4 +9,5 @@ public class RegisterPayload
     public string teacherId;
     public string registerYear;
     public string gender;
+    public string scope;
 }
