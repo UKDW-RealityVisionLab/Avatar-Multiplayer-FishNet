@@ -654,10 +654,12 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 4866379801803672680}
   _networkObjectCache: {fileID: 4866379801803672680}
   character:
-  - {fileID: 244364691231632075, guid: 0477e8a4495936a47bb2943caae5cef7, type: 3}
-  - {fileID: 449861108802899413, guid: fbfd51c9ec08dbd4289f59444e54e730, type: 3}
+  - {fileID: 4416926081852918481, guid: ee6ffe8c22f19004cbc72f4962d74699, type: 3}
+  - {fileID: 4416926081852918481, guid: 0cdfd687e66ba1d49a554c0d0baa3161, type: 3}
   characterSelectorPanel: {fileID: 5519027070641055260}
   canvasObject: {fileID: 4560498834502640925}
+  vrPlayerPrefab: {fileID: 8946721896684156817, guid: 68dd39ead863da44f95fa2a12d43d5c4, type: 3}
+  cameraTag: AmpunDJ
 --- !u!114 &613287265976927250
 MonoBehaviour:
   m_ObjectHideFlags: 0

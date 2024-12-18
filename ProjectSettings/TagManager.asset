@@ -7,6 +7,11 @@ TagManager:
   - CinemachineTarget
   - Third Camera
   - Camera
+  - Server
+  - AmpunDJ
+  - MainCameraAndro
+  - MainCameraVR
+  - XR Origin
   layers:
   - Default
   - TransparentFX
@@ -14,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - InteractableObject
+  - 
+  - 
   - 
   - 
   - 
