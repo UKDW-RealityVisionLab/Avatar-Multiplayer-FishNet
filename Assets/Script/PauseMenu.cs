@@ -1,37 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] Slider audioVolumeSlider; // Slider untuk volume audio
-    [SerializeField] Slider musicVolumeSlider; // Slider untuk volume musik
+    [SerializeField] private GameObject pauseMenu; // Menu pause
+    private float cameraSpeed = 10f;
+    private bool isCameraMoving = false;
 
-    private AudioSource musicSource; // AudioSource untuk musik
+    private ThirdPersonController thirdPersonController;
 
     void Start()
     {
-        // Mendapatkan komponen AudioSource dari objek yang memiliki musik
-        musicSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
+        pauseMenu.SetActive(false);
+    }
 
-        // Mengatur slider ke nilai volume saat ini
-        audioVolumeSlider.value = AudioListener.volume;
-        musicVolumeSlider.value = musicSource.volume;
+    void Update()
+    {
+        // Only move the camera if not paused
+        if (!IsPaused())
+        {
+            if (isCameraMoving)
+            {
+                float moveHorizontal = Input.GetAxis("Horizontal") * cameraSpeed * Time.deltaTime;
+                float moveVertical = Input.GetAxis("Vertical") * cameraSpeed * Time.deltaTime;
 
-        // Menambahkan listener untuk slider
-        audioVolumeSlider.onValueChanged.AddListener(SetAudioVolume);
-        musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+                // Move the camera
+                transform.Translate(moveHorizontal, 0, moveVertical);
+            }
+        }
+    }
+
+    public void TogglePause() 
+    {
+        if (Time.timeScale == 0f)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
     }
 
     public void Pause()
     {
-        // Menampilkan menu pause
         pauseMenu.SetActive(true);
-        // Menghentikan waktu
         Time.timeScale = 0f;
+        isCameraMoving = false;
+
+        FindThirdPersonController();
+        if (thirdPersonController != null)
+        {
+            thirdPersonController.enabled = false;
+        }
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isCameraMoving = true;
+
+        if (thirdPersonController != null)
+        {
+            thirdPersonController.enabled = true;
+        }
     }
 
     public void Quit()
@@ -39,26 +75,23 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    public void Resume()
+    // Check if the game is paused
+    private bool IsPaused()
     {
-        // Menyembunyikan menu pause
-        pauseMenu.SetActive(false);
-        // Mengembalikan waktu ke normal
-        Time.timeScale = 1f;
+        return Time.timeScale == 0f;
     }
 
-    // Fungsi untuk mengatur volume audio
-    public void SetAudioVolume(float volume)
+    // Find the spawned ThirdPersonController object
+    private void FindThirdPersonController()
     {
-        AudioListener.volume = volume;
-    }
-
-    // Fungsi untuk mengatur volume musik
-    public void SetMusicVolume(float volume)
-    {
-        if (musicSource != null)
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Ensure your player prefab is tagged as "Player"
+        if (player != null)
         {
-            musicSource.volume = volume;
+            thirdPersonController = player.GetComponent<ThirdPersonController>();
         }
-    }
+        else
+        {
+            Debug.LogWarning("Spawned player not found!");
+        }
+    }
 }
