@@ -36,7 +36,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (selectedCharacter != null)
         {
-            SceneManager.LoadScene("Game"); // Ganti "GameScene" dengan nama scene game Anda
+            SceneManager.LoadScene("SampleScene"); // Ganti "GameScene" dengan nama scene game Anda
         }
         else
         {
